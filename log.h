@@ -1,7 +1,7 @@
 #ifndef _LOG_H
 #define _LOG_H
 
-/* 
+/*
  * LOG_DISABLE - disable logging
  */
 
@@ -14,9 +14,9 @@
 
 void log_write(unsigned char level, const char *fmt_string, ...);
 
-#ifndef LOG_DISABLE 
+#ifndef LOG_DISABLE
 
-#define PDEBUG(fmt, ...) printf("USER: " fmt , __VA_ARGS__)
+#define PDEBUG(fmt, ...) printf("USER: " fmt, __VA_ARGS__)
 #define PDEBUGSTRING(str) printf("USER: " str)
 #define log log_write
 
@@ -24,8 +24,8 @@ void log_write(unsigned char level, const char *fmt_string, ...);
 
 #define PDEBUG(fmt, ...)
 #define PDEBUGSTRING(str)
-#define log_empty(level, fmt_string, ...) 
-#define log log_empty 
+#define log_empty(level, fmt_string, ...)
+#define log log_empty
 
 #endif
 

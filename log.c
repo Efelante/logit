@@ -13,13 +13,14 @@ static int logfd = -1;
 
 static int log_init(void)
 {
-	int fd = open("./log.txt", O_CREAT|O_RDWR|O_TRUNC, S_IRWXU);
-	if (-1 == fd)
-	{
+	int fd;
+
+	fd = open("./log.txt", O_CREAT|O_RDWR|O_TRUNC, 0700);
+
+	if (-1 == fd) {
 		perror("log_init");
 		return -1;
 	}
-	
 }
 
 void log_write(uint8_t level, const char *fmt_string, ...)
@@ -28,10 +29,8 @@ void log_write(uint8_t level, const char *fmt_string, ...)
 	char log_message[BUF_SIZE];
 	va_list arg_list;
 
-	if (level <= MAX_LEVEL)
-	{
-		if (-1 == logfd)
-		{
+	if (level <= MAX_LEVEL) {
+		if (-1 == logfd) {
 			logfd = log_init();
 		}
 		va_start(arg_list, fmt_string);
@@ -40,4 +39,3 @@ void log_write(uint8_t level, const char *fmt_string, ...)
 		va_end(arg_list);
 	}
 }
-
